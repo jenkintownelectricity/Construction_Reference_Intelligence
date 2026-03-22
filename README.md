@@ -131,6 +131,40 @@ Drift Sentinel may NOT:
 
 This capability is observational and advisory only.
 
+## CRI Signal Contract v0.1
+
+CRI produces structured intelligence signals for the Cognitive Bus via the `cri/` module.
+
+### Signal Types
+
+| Signal Type | Event Class | Description |
+|---|---|---|
+| `observation` | `Observation` | Non-authoritative intelligence observation derived from analysis |
+| `proposal` | `Proposal` | Suggested action based on analysis, for downstream consideration |
+
+### What CRI Signals ARE
+
+- Non-authoritative hints, observations, and proposals
+- Structured intelligence carrying lineage metadata
+- Valid Cognitive Bus event envelopes (schema v0.1)
+- Inputs for the Awareness Cache to compile into frozen awareness
+
+### What CRI Signals ARE NOT
+
+- **NOT truth claims** — CRI never asserts canonical truth
+- **NOT ExternallyValidatedEvent** — CRI must never emit this event class
+- **NOT direct Awareness Cache writes** — CRI emits to the bus only
+- **NOT directives or commands** — signals are suggestions, not orders
+
+### Module Structure
+
+| File | Purpose |
+|---|---|
+| `cri/config.py` | Identity constants, schema version, allowed signal types |
+| `cri/signal_contract.py` | Signal type definitions and validation rules |
+| `cri/signal_mapper.py` | Maps CRI signal types to Cognitive Bus event classes |
+| `cri/signal_envelope_builder.py` | Builds valid Cognitive Bus event envelopes |
+
 ## Governance
 
 - Fail-closed posture
