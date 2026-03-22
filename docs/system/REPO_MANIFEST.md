@@ -53,6 +53,24 @@ Construction_Reference_Intelligence (CRI) is the memory formation and structural
 3. **Fail-closed behavior.** If lineage is missing, malformed, or unverifiable, CRI fails closed — it does not emit, store, or propagate the artifact.
 4. **No self-canonicalization.** CRI never treats its own outputs as authoritative source material. Its artifacts are always classified as non-authority intelligence signals.
 
+## Signal Contract v0.1 Components
+
+| Component | Path | Purpose |
+|---|---|---|
+| `cri/__init__.py` | `cri/__init__.py` | Package init with module docstring |
+| `cri/config.py` | `cri/config.py` | CRI identity constants, schema version, allowed signal types, payload limit |
+| `cri/signal_contract.py` | `cri/signal_contract.py` | Signal type definitions, descriptions, and validation rules |
+| `cri/signal_mapper.py` | `cri/signal_mapper.py` | Maps CRI signal types to Cognitive Bus event_class values |
+| `cri/signal_envelope_builder.py` | `cri/signal_envelope_builder.py` | Builds valid Cognitive Bus event envelopes from CRI signals |
+| `tests/test_signal_mapping.py` | `tests/test_signal_mapping.py` | Tests for signal type to event class mapping |
+| `tests/test_signal_format.py` | `tests/test_signal_format.py` | Tests for envelope format, schema compliance, and constraints |
+
+### Signal Types
+
+- **observation** maps to Cognitive Bus `Observation` event class
+- **proposal** maps to Cognitive Bus `Proposal` event class
+- **ExternallyValidatedEvent** is explicitly forbidden for CRI
+
 ## Governance
 
 CRI conforms to the Cognitive Layer Boundary Matrix. All vocabulary used in signals, metadata, and inter-component communication follows the locked vocabulary verbatim. No synonyms, paraphrases, or alternative terms are substituted for governed vocabulary.
